@@ -40,8 +40,9 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 .card-oem{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--muted);flex-wrap:wrap}
 .card-oem code{font-family:'SF Mono',Consolas,monospace;background:var(--surface-2);padding:3px 8px;border-radius:6px;color:#ffd18a;font-size:.82rem}
 .card-note{font-size:.82rem;color:var(--muted);line-height:1.45}
-.card-actions{margin-top:auto;padding-top:8px}
-.btn-copy{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.82rem;font-family:inherit;font-weight:500;cursor:pointer;transition:all .2s}.btn-copy:hover{background:var(--accent);border-color:var(--accent)}
+.card-actions{margin-top:auto;padding-top:8px;display:flex;gap:8px;flex-wrap:wrap}
+.btn-copy{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:.82rem;font-family:inherit;font-weight:500;cursor:pointer;transition:all .2s;text-decoration:none}.btn-copy:hover{background:var(--accent);border-color:var(--accent)}
+.btn-order{background:var(--accent);border-color:var(--accent);color:#fff}.btn-order:hover{background:#e04a20;border-color:#e04a20}
 .empty-state{padding:60px 20px;text-align:center;color:var(--muted);font-size:1rem}
 .instructions{padding:64px 0;border-top:1px solid var(--border);background:linear-gradient(180deg,transparent,rgba(255,91,46,.03))}
 .section-title{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;letter-spacing:-.02em}
@@ -76,7 +77,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 <section class="hero">
   <div class="container">
     <h1>Запчасти для <span class="accent">Mazda Diesel</span></h1>
-    <p class="hero-sub">CX-3 / Demio • 43 позиции • двигатель, ходовая, тормоза, электрика</p>
+    <p class="hero-sub">CX-3 / Demio • двигатель, ходовая, тормоза, электрика</p>
     <div class="hero-note">⚠️ Перед покупкой сверяйте деталь по VIN — рестайлинг и комплектация меняют артикул.</div>
   </div>
 </section>
@@ -108,7 +109,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 <section class="instructions" id="instructions">
   <div class="container">
     <h2 class="section-title">📖 Инструкции и полезное</h2>
-    <p class="section-sub">Пошаговые руководства по обслуживанию Mazda Diesel.</p>
+    <p class="section-sub">Пошаговые руководства по обслуживанию Mazda Diesel. Сверяйте моменты затяжки и регламенты с официальной документацией.</p>
     <div class="instruction-grid" id="instructionGrid"></div>
   </div>
 </section>
@@ -128,7 +129,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 <footer class="site-footer">
   <div class="container footer-inner">
     <div><span style="font-weight:800">dremr<span class="accent">.ru</span></span><p class="muted">Каталог запчастей Mazda Diesel</p></div>
-    <p class="muted small">© <span id="year"></span> dremr.ru — артикулы справочные</p>
+    <p class="muted small">© <span id="year"></span> dremr.ru — артикулы справочные, сверяйте по VIN</p>
   </div>
 </footer>
 
@@ -136,62 +137,73 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
 <script>
 const PARTS=[
-{name:"Воздушный фильтр (дорест)",category:"engine",oem:"—",brand:"—",note:"Уточнить артикул по VIN"},
-{name:"Воздушный фильтр (рест)",category:"engine",oem:"—",brand:"—",note:"Различается до/после рестайлинга"},
-{name:"Салонный фильтр",category:"engine",oem:"—",brand:"—",note:"Каждые 15–20 тыс. км"},
-{name:"Масляный фильтр",category:"engine",oem:"—",brand:"—",note:"Для дизеля 1.5 Skyactiv-D"},
-{name:"Топливный фильтр",category:"engine",oem:"—",brand:"—",note:"Каждые 30 тыс. км"},
-{name:"Фильтр АКПП",category:"engine",oem:"—",brand:"—",note:"—"},
-{name:"Сальники форсунок",category:"engine",oem:"—",brand:"—",note:"Комплект на 4 форсунки"},
-{name:"Шайбы форсунок (старого образца)",category:"engine",oem:"—",brand:"—",note:"Медные, до рестайлинга"},
-{name:"Шайбы форсунок (нового образца)",category:"engine",oem:"—",brand:"—",note:"После рестайлинга"},
-{name:"Шайбы обратки",category:"engine",oem:"—",brand:"—",note:"—"},
-{name:"Свечи накаливания",category:"engine",oem:"—",brand:"—",note:"Комплект 4 шт."},
-{name:"Обгонная муфта генератора",category:"engine",oem:"—",brand:"—",note:"—"},
-{name:"Приводной ремень",category:"engine",oem:"—",brand:"—",note:"—"},
-{name:"Помпа охлаждения",category:"engine",oem:"—",brand:"—",note:"—"},
-{name:"Прокладка теплообменника",category:"engine",oem:"—",brand:"—",note:"—"},
-{name:"Кольца теплообменника",category:"engine",oem:"—",brand:"—",note:"—"},
-{name:"Прокладка клапанной крышки",category:"engine",oem:"—",brand:"—",note:"—"},
-{name:"Прокладки впускного коллектора",category:"engine",oem:"—",brand:"—",note:"—"},
-{name:"Передние стойки (KYB)",category:"suspension",oem:"—",brand:"KYB",note:"Пара"},
-{name:"Передняя опора стойки",category:"suspension",oem:"—",brand:"—",note:"—"},
-{name:"Задние стойки",category:"suspension",oem:"—",brand:"—",note:"—"},
-{name:"Отбойники и пыльники амортизаторов",category:"suspension",oem:"—",brand:"—",note:"Комплект"},
-{name:"Стойки стабилизатора",category:"suspension",oem:"—",brand:"—",note:"Пара"},
-{name:"Шаровая опора",category:"suspension",oem:"—",brand:"—",note:"—"},
-{name:"Малый сайлентблок нижнего рычага",category:"suspension",oem:"—",brand:"—",note:"—"},
-{name:"Большой сайлентблок нижнего рычага",category:"suspension",oem:"—",brand:"—",note:"—"},
-{name:"Рулевой наконечник",category:"suspension",oem:"—",brand:"—",note:"—"},
-{name:"Рулевая тяга",category:"suspension",oem:"—",brand:"—",note:"—"},
-{name:"Пыльник рулевой рейки",category:"suspension",oem:"—",brand:"—",note:"—"},
-{name:"Задние колодки (дорест)",category:"brakes",oem:"—",brand:"—",note:"Без электронного ручника"},
-{name:"Задние колодки (рест, с эл. ручником)",category:"brakes",oem:"—",brand:"—",note:"С электронным стояночным тормозом"},
-{name:"Передние колодки (рест)",category:"brakes",oem:"—",brand:"—",note:"—"},
-{name:"Передние колодки (дорест)",category:"brakes",oem:"—",brand:"—",note:"—"},
-{name:"Передний тормозной диск 280 мм",category:"brakes",oem:"—",brand:"—",note:"Малая комплектация"},
-{name:"Передний тормозной диск 295 мм",category:"brakes",oem:"—",brand:"—",note:"Большая комплектация"},
-{name:"Ремкомплект направляющих суппорта",category:"brakes",oem:"—",brand:"—",note:"Передний суппорт"},
-{name:"Щёточный узел стартера",category:"electric",oem:"—",brand:"—",note:"—"},
-{name:"Аккумулятор D26L EFB",category:"electric",oem:"—",brand:"—",note:"Тип EFB, размер D26L"},
-{name:"Передняя ступица",category:"consumables",oem:"—",brand:"—",note:"—"},
-{name:"Задняя ступица",category:"consumables",oem:"—",brand:"—",note:"—"},
-{name:"Прокладка датчика давления масла",category:"consumables",oem:"—",brand:"—",note:"—"},
-{name:"Штатный размер колёс 215/50 R18",category:"consumables",oem:"—",brand:"—",note:"Заводской размер"},
-{name:"Докатка 135/90 R16",category:"consumables",oem:"—",brand:"—",note:"Запасное колесо"}
+  // --- Двигатель и топливная ---
+  {name:"Воздушный фильтр (дорест)",category:"engine",oem:"P53N-13-3A0",brand:"Mazda",note:"Оригинал. Аналог: BOSCH F026400457"},
+  {name:"Воздушный фильтр (рест)",category:"engine",oem:"P501-13-3A0",brand:"Mazda",note:"Оригинал. Аналог: KNECHT LX4142"},
+  {name:"Салонный фильтр",category:"engine",oem:"DB9L-61-J6X",brand:"Mazda",note:"Оригинал. Аналог: MANN CU 20 018"},
+  {name:"Масляный фильтр",category:"engine",oem:"S51C-13-480",brand:"Mazda",note:"Оригинал. Аналог: MANN W 7061"},
+  {name:"Топливный фильтр",category:"engine",oem:"S51C-13-ZA5",brand:"Mazda",note:"Оригинал. Аналог: MANN WK 6034, Bosch F026402203"},
+  {name:"Фильтр АКПП",category:"engine",oem:"—",brand:"—",note:"Уточняйте по VIN (зависит от коробки)"},
+  {name:"Сальники форсунок",category:"engine",oem:"—",brand:"—",note:"Комплект на 4 форсунки (уточнить по VIN)"},
+  {name:"Шайбы форсунок (старого образца)",category:"engine",oem:"—",brand:"—",note:"Медные, до рестайлинга"},
+  {name:"Шайбы форсунок (нового образца)",category:"engine",oem:"—",brand:"—",note:"После рестайлинга"},
+  {name:"Шайбы обратки",category:"engine",oem:"—",brand:"—",note:"—"},
+  {name:"Свечи накаливания",category:"engine",oem:"S550-18-601",brand:"Mazda",note:"Оригинал. Аналог: NGK CZ165 / 93218"},
+  {name:"Обгонная муфта генератора",category:"engine",oem:"—",brand:"—",note:"Уточнить по VIN"},
+  {name:"Приводной ремень",category:"engine",oem:"—",brand:"—",note:"Уточнить по VIN (с кондиционером / без)"},
+  {name:"Ролик натяжителя ремня",category:"engine",oem:"PE03-15-980C",brand:"Mazda",note:"Оригинал. Аналог: INA 533 0129 10"},
+  {name:"Помпа охлаждения",category:"engine",oem:"—",brand:"—",note:"Уточнить по VIN"},
+  {name:"Прокладка теплообменника",category:"engine",oem:"—",brand:"—",note:"—"},
+  {name:"Кольца теплообменника",category:"engine",oem:"—",brand:"—",note:"—"},
+  {name:"Прокладка клапанной крышки",category:"engine",oem:"—",brand:"—",note:"—"},
+  {name:"Прокладки впускного коллектора",category:"engine",oem:"—",brand:"—",note:"—"},
+
+  // --- Ходовая и рулевое ---
+  {name:"Передние стойки (KYB Excel-G)",category:"suspension",oem:"3340138 / 3340139",brand:"KYB",note:"Правая / левая. Альтернатива: 3340210"},
+  {name:"Передняя опора стойки",category:"suspension",oem:"—",brand:"—",note:"Рекомендуется менять со стойками"},
+  {name:"Задние стойки",category:"suspension",oem:"3430037",brand:"KYB",note:"Excel-G. Аналог: Sachs 350465"},
+  {name:"Отбойники и пыльники амортизаторов",category:"suspension",oem:"—",brand:"—",note:"Комплект на ось"},
+  {name:"Стойки стабилизатора",category:"suspension",oem:"—",brand:"—",note:"Пара. Уточнить по VIN"},
+  {name:"Шаровая опора",category:"suspension",oem:"—",brand:"—",note:"—"},
+  {name:"Малый сайлентблок нижнего рычага",category:"suspension",oem:"—",brand:"—",note:"—"},
+  {name:"Большой сайлентблок нижнего рычага",category:"suspension",oem:"—",brand:"—",note:"—"},
+  {name:"Рулевой наконечник",category:"suspension",oem:"—",brand:"—",note:"—"},
+  {name:"Рулевая тяга",category:"suspension",oem:"—",brand:"—",note:"—"},
+  {name:"Пыльник рулевой рейки",category:"suspension",oem:"—",brand:"—",note:"—"},
+
+  // --- Тормоза ---
+  {name:"Задние колодки (дорест, без эл. ручника)",category:"brakes",oem:"K0Y1-26-48Z",brand:"Mazda",note:"Оригинал. Аналог: EBC DPX2135"},
+  {name:"Задние колодки (рест, с эл. ручником)",category:"brakes",oem:"—",brand:"—",note:"Обязательно уточнить по VIN (разные суппорты)"},
+  {name:"Передние колодки",category:"brakes",oem:"BHY1-33-28ZA",brand:"Mazda",note:"Оригинал. Аналог: B4Y0-33-28ZB"},
+  {name:"Передний тормозной диск",category:"brakes",oem:"B45G-33-251A",brand:"Mazda",note:"Оригинал. Аналог: Zimmermann 370.3054.20"},
+  {name:"Ремкомплект направляющих суппорта",category:"brakes",oem:"—",brand:"—",note:"Передний / задний (уточнить)"},
+
+  // --- Электрика ---
+  {name:"Щёточный узел стартера",category:"electric",oem:"—",brand:"—",note:"—"},
+  {name:"Аккумулятор D26L EFB",category:"electric",oem:"—",brand:"—",note:"Тип EFB, размер D26L (например, Varta, Exide)"},
+
+  // --- Расходники и прочее ---
+  {name:"Передняя ступица (подшипник)",category:"consumables",oem:"D10E-26-15X",brand:"Mazda",note:"Оригинал. Аналог: NSK, SNR"},
+  {name:"Задняя ступица (подшипник)",category:"consumables",oem:"D10E-26-15X",brand:"Mazda",note:"Уточнить по VIN (перед/зад отличаются)"},
+  {name:"Прокладка датчика давления масла",category:"consumables",oem:"—",brand:"—",note:"—"},
+  {name:"Штатный размер колёс 215/50 R18",category:"consumables",oem:"—",brand:"—",note:"Заводской размер"},
+  {name:"Докатка 135/90 R16",category:"consumables",oem:"—",brand:"—",note:"Запасное колесо"}
 ];
+
 const INSTRUCTIONS=[
-{icon:"🛢️",title:"Замена моторного масла",desc:"Объём, вязкость, момент затяжки сливной пробки и фильтра для Skyactiv-D 1.5.",link:"#"},
-{icon:"🌬️",title:"Замена воздушного и салонного фильтров",desc:"Пошагово с фото: где находятся, какие клипсы, что не сломать.",link:"#"},
-{icon:"🔩",title:"Моменты затяжки ходовой",desc:"Таблица моментов для стоек, шаровых, рычагов и рулевых наконечников.",link:"#"},
-{icon:"🔥",title:"Проверка и замена свечей накаливания",desc:"Как проверить мультиметром, признаки износа, порядок замены.",link:"#"},
-{icon:"🛑",title:"Замена тормозных колодок",desc:"Передние и задние, различие с электронным ручником и без.",link:"#"},
-{icon:"💧",title:"Обслуживание системы охлаждения",desc:"Антифриз, помпа, теплообменник — регламент и тонкости.",link:"#"}
+  {icon:"🛢️",title:"Замена моторного масла",desc:"Объём: 5.1 л (с фильтром). Рекомендуемое масло: 0W-20 (Mazda Original Oil Supra D). Интервал: 10-20 тыс. км.",link:"https://uk.haynes.com/products/mazda-cx-3-2015-2025-maintenance-plans"},
+  {icon:"🌬️",title:"Замена воздушного и салонного фильтров",desc:"Пошагово с фото: где находятся, какие клипсы, что не сломать. Время: 5-10 минут.",link:"https://uk.haynes.com/products/mazda-cx-3-2015-2025-maintenance-plans"},
+  {icon:"🔩",title:"Моменты затяжки ходовой",desc:"Таблица моментов для стоек, шаровых, рычагов и рулевых наконечников. Сверяйтесь с официальным руководством.",link:"#"},
+  {icon:"🔥",title:"Проверка и замена свечей накаливания",desc:"Как проверить мультиметром, признаки износа, порядок замены. Оригинал: S550-18-601, аналог NGK CZ165.",link:"#"},
+  {icon:"🛑",title:"Замена тормозных колодок",desc:"Передние и задние, различие с электронным ручником и без. Важно: на рестайлинге с EPB нужен сервисный режим.",link:"https://uk.haynes.com/products/mazda-cx-3-2015-2025-maintenance-plans"},
+  {icon:"💧",title:"Обслуживание системы охлаждения",desc:"Антифриз, помпа, теплообменник — регламент и тонкости. Проверяйте уровень и состояние жидкости.",link:"#"}
 ];
+
 const CATEGORY_LABELS={engine:"Двигатель",suspension:"Ходовая",brakes:"Тормоза",electric:"Электрика",consumables:"Расходники"};
 const grid=document.getElementById("cardGrid"),emptyState=document.getElementById("emptyState"),counter=document.getElementById("counter");
 const searchInput=document.getElementById("searchInput"),quickFilter=document.getElementById("quickFilter"),tabs=document.querySelectorAll(".tab"),toast=document.getElementById("toast");
 let activeCategory="all";
+
 function renderCards(){
   const mainQ=searchInput.value.trim().toLowerCase(),subQ=quickFilter.value.trim().toLowerCase();
   const filtered=PARTS.filter(p=>{
@@ -210,19 +222,24 @@ function renderCards(){
       <h3 class="card-title">${esc(p.name)}</h3>
       <div class="card-oem"><span>OEM:</span><code>${esc(p.oem||"—")}</code>${p.brand&&p.brand!=="—"?`<span>· ${esc(p.brand)}</span>`:""}</div>
       ${p.note?`<p class="card-note">${esc(p.note)}</p>`:""}
-      <div class="card-actions"><button class="btn-copy" data-copy="${esc(p.oem||p.name)}">📋 Копировать артикул</button></div>
+      <div class="card-actions">
+        <button class="btn-copy" data-copy="${esc(p.oem||p.name)}">📋 Артикул</button>
+        <a href="https://t.me/ВАШ_НИК_В_ТЕЛЕГРАМ" target="_blank" class="btn-copy btn-order">Заказать</a>
+      </div>
     </article>`).join("");
-  grid.querySelectorAll(".btn-copy").forEach(b=>b.addEventListener("click",()=>copyText(b.dataset.copy)));
+  grid.querySelectorAll(".btn-copy[data-copy]").forEach(b=>b.addEventListener("click",()=>copyText(b.dataset.copy)));
 }
+
 function renderInstructions(){
   document.getElementById("instructionGrid").innerHTML=INSTRUCTIONS.map(it=>`
     <article class="instr-card">
       <div class="instr-icon">${it.icon}</div>
       <div class="instr-title">${esc(it.title)}</div>
       <div class="instr-desc">${esc(it.desc)}</div>
-      <a href="${it.link}" class="instr-link">Читать →</a>
+      <a href="${it.link}" ${it.link!=="#"?'target="_blank"':''} class="instr-link">Читать →</a>
     </article>`).join("");
 }
+
 async function copyText(text){
   try{await navigator.clipboard.writeText(text);showToast("Скопировано: "+text);}
   catch{const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove();showToast("Скопировано: "+text);}
@@ -231,6 +248,7 @@ let toastTimer;
 function showToast(msg){toast.textContent=msg;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("show"),2000);}
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 function plural(n,one,few,many){const m10=n%10,m100=n%100;if(m10===1&&m100!==11)return one;if(m10>=2&&m10<=4&&(m100<10||m100>=20))return few;return many;}
+
 tabs.forEach(t=>t.addEventListener("click",()=>{tabs.forEach(x=>x.classList.remove("is-active"));t.classList.add("is-active");activeCategory=t.dataset.cat;renderCards();}));
 searchInput.addEventListener("input",renderCards);
 quickFilter.addEventListener("input",renderCards);
