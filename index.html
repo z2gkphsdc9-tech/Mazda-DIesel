@@ -23,12 +23,14 @@
 --shadow:0 12px 34px rgba(0,0,0,.45),0 1px 0 rgba(255,255,255,.12) inset}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{background:var(--bg1);min-height:100%}
+html::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(180deg,rgba(233,237,255,.25),rgba(233,237,255,.55)),url(bg.jpg) center/cover no-repeat}
+@media (prefers-color-scheme:dark){html::after{background:linear-gradient(180deg,rgba(11,13,24,.55),rgba(11,13,24,.8)),url(bg.jpg) center/cover no-repeat}}
 html,body{margin:0}
 body{color:var(--ink);font:16px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;padding:max(18px,env(safe-area-inset-top)) 16px max(28px,env(safe-area-inset-bottom));min-height:100vh;position:relative}
-body::before,body::after{content:"";position:fixed;z-index:-1;border-radius:50%;filter:blur(70px);opacity:.75;pointer-events:none;animation:drift 18s ease-in-out infinite alternate}
+body::before,body::after{content:"";position:fixed;z-index:-1;border-radius:50%;filter:blur(70px);opacity:.4;mix-blend-mode:soft-light;pointer-events:none;animation:drift 18s ease-in-out infinite alternate}
 body::before{width:60vmax;height:60vmax;left:-20vmax;top:-18vmax;background:radial-gradient(circle,#5aa2ff,transparent 65%)}
 body::after{width:55vmax;height:55vmax;right:-22vmax;bottom:-16vmax;background:radial-gradient(circle,#ff5fa2,transparent 65%);animation-delay:-6s}
-html::before{content:"";position:fixed;z-index:-1;width:45vmax;height:45vmax;right:-8vmax;top:10vh;border-radius:50%;filter:blur(80px);opacity:.5;background:radial-gradient(circle,#ffb347,transparent 65%);animation:drift 22s ease-in-out infinite alternate-reverse;pointer-events:none}
+html::before{content:"";position:fixed;z-index:-1;width:45vmax;height:45vmax;right:-8vmax;top:10vh;border-radius:50%;filter:blur(80px);opacity:.3;mix-blend-mode:soft-light;background:radial-gradient(circle,#ffb347,transparent 65%);animation:drift 22s ease-in-out infinite alternate-reverse;pointer-events:none}
 @keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.15)}}
 @keyframes rise{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
 main{max-width:720px;margin:0 auto}
