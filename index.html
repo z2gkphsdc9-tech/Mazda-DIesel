@@ -135,6 +135,44 @@ button.copy.sec{background:var(--grad);box-shadow:0 6px 16px rgba(123,92,255,.4)
 .warn a{color:var(--acc);font-weight:700;word-break:break-all}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
+/* ===== ПК и планшеты: полноэкранная раскладка (телефон остаётся как был) ===== */
+@media (min-width:900px){
+body{font-size:17px;padding:max(32px,env(safe-area-inset-top)) clamp(24px,4vw,64px) 48px}
+main{max-width:1500px}
+h1{font-size:3rem;margin:6px 4px 8px}
+.sub{font-size:1.05rem;margin-bottom:22px}
+/* панель управления слева-направо, не растягиваем на весь экран */
+.cars{max-width:560px}
+input{max-width:760px;font-size:1.15rem;padding:16px 22px 16px 52px;background-position:20px center}
+.chips{flex-wrap:wrap;overflow:visible;padding:18px 2px 14px}
+.chip{padding:9px 18px;transition:all .25s cubic-bezier(.3,1.4,.5,1)}
+.chip:hover{transform:translateY(-2px);background:var(--glass2)}
+.chip[aria-pressed=true]:hover{background:var(--grad)}
+.car:hover{background:var(--chip)}
+.car[aria-pressed=true]:hover{background:var(--glass2)}
+.modes .car[aria-pressed=true]:hover{background:var(--grad)}
+/* карточки сеткой на весь экран */
+#list{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:18px;align-items:start}
+#list .card{margin:0;height:100%;transition:transform .3s cubic-bezier(.3,1.4,.5,1),box-shadow .3s}
+#list .card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(60,50,140,.28),0 1px 0 rgba(255,255,255,.9) inset}
+#list .empty{grid-column:1/-1}
+#list .guide{height:auto}
+#list .guide[open]{grid-column:1/-1}
+#list .guide[open] .body{max-width:960px}
+button.copy:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.an li:hover{background:var(--chip)}
+.src:hover,.sheet a:hover,.sheet button:hover{transform:translateY(-2px)}
+/* деталь открывается окном по центру, а не шторкой */
+.modal{align-items:center;padding:24px}
+.sheet{max-width:760px;max-height:90vh;border-radius:30px;padding:30px;animation:pop .35s cubic-bezier(.2,.9,.3,1)}
+.sheet::before{display:none}
+@keyframes pop{from{transform:scale(.92);opacity:0}to{transform:none;opacity:1}}
+.foot{font-size:.9rem;margin-top:34px}
+}
+@media (min-width:1500px){
+#list{grid-template-columns:repeat(auto-fill,minmax(400px,1fr))}
+}
+
 </style>
 </head>
 <body>
