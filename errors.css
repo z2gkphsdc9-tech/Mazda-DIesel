@@ -1,0 +1,95 @@
+/* Страница «Ошибки»: стеклянный стиль сайта. Всё привязано к .dtc, чтобы не пересекаться с остальными страницами. */
+.dtc{--dred:#d41f3a;--redsoft:rgba(255,77,94,.12);--warnbg:rgba(255,159,10,.16);--warnink:#8a5200;--mono:ui-monospace,"SF Mono",Consolas,monospace;
+max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+@media (prefers-color-scheme:dark){.dtc{--dred:#ff6a73;--redsoft:rgba(255,90,100,.16);--warnbg:rgba(255,159,10,.18);--warnink:#ffc266}}
+.dtc>.back{align-self:flex-start;margin:0}
+.dtc>.brand{margin:0}
+.dtc>.sub{text-align:center;margin:-6px 4px 4px}
+
+/* поле кода */
+.dtc .scan{background:var(--glass);border:1px solid var(--edge);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow);-webkit-backdrop-filter:blur(26px) saturate(1.8);backdrop-filter:blur(26px) saturate(1.8)}
+.dtc .scan label{font-family:var(--f-head);font-weight:600;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.dtc .scan-row{display:flex;gap:10px;align-items:stretch}
+.dtc #q{flex:1;min-width:0;width:auto;max-width:none;background:transparent;background-image:none;border:0;border-bottom:2px solid var(--line);border-radius:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;transform:none;color:var(--ink);font-family:var(--mono);font-weight:700;font-size:clamp(1.7rem,7vw,2.6rem);letter-spacing:.08em;padding:4px 2px;text-transform:uppercase}
+.dtc #q::placeholder{color:var(--mute);opacity:.5}
+.dtc #q:focus{outline:none;box-shadow:none;transform:none;border-bottom-color:var(--acc)}
+.dtc #clear{flex:none;border:1px solid var(--edge);background:var(--chip);color:var(--ink);border-radius:99px;padding:0 16px;cursor:pointer;font-weight:600;font-size:.9rem}
+.dtc .scan small{color:var(--mute);font-size:.82rem}
+
+/* карточка кода */
+.dtc .card{padding:0;margin:0}
+.dtc .card-top{padding:18px 18px 14px 22px;display:flex;flex-direction:column;gap:8px}
+.dtc .code-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 12px}
+.dtc .code{font-family:var(--mono);font-weight:700;font-size:1.9rem;line-height:1;letter-spacing:.04em}
+.dtc .code i{font-style:normal;color:var(--mute);font-size:1.1rem}
+.dtc .tag{margin-top:0;font-size:.78rem;font-weight:600;border-radius:99px;padding:3px 10px;background:var(--chip);color:var(--mute);white-space:nowrap}
+.dtc .tag.eng{background:var(--grad);color:#fff}
+.dtc .tag.mine{background:var(--warnbg);color:var(--warnink)}
+.dtc .card h2{font-weight:700;font-size:1.3rem;line-height:1.2;margin:0;text-wrap:balance}
+.dtc .fix{background:var(--redsoft);padding:12px 18px 12px 22px;font-weight:500}
+.dtc .fix b{display:block;font-family:var(--f-head);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dred);margin-bottom:2px}
+.dtc .sec{padding:14px 18px 14px 22px;border-top:1px solid var(--line)}
+.dtc .sec h3{font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 8px}
+.dtc .sec p{margin:0;max-width:68ch}
+.dtc .sec ul,.dtc .sec ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px;max-width:72ch}
+.dtc .sec ol{list-style:none;padding-left:0;counter-reset:s}
+.dtc .sec ol li{counter-increment:s;display:grid;grid-template-columns:2em 1fr;gap:6px}
+.dtc .sec ol li::before{content:counter(s);font-family:var(--mono);font-weight:700;color:var(--acc)}
+.dtc .sec ol li>span{min-width:0}
+.dtc .pre{color:var(--mute);font-size:.93rem;margin-bottom:10px!important}
+.dtc .note{margin:0;background:var(--warnbg);color:var(--ink);border-radius:14px;padding:10px 12px;font-size:.93rem}
+.dtc .note b{color:var(--warnink)}
+.dtc .src{display:inline;margin:0;padding:0;background:none;box-shadow:none;border-radius:0;color:var(--mute);font-size:.82rem;font-weight:400;text-align:left;overflow-wrap:anywhere;word-break:normal}
+.dtc .src:active{transform:none}
+.dtc .ph{margin:0;padding:14px 18px 14px 22px;border-top:1px solid var(--line);display:block;aspect-ratio:auto;background:none;border-radius:0;overflow:visible;text-align:left;color:inherit;font-size:inherit}
+.dtc .ph img{display:block;width:100%;height:auto;max-width:360px;object-fit:fill;border-radius:14px}
+.dtc .ph figcaption{font-size:.88rem;color:var(--mute);margin-top:6px}
+
+/* кнопки */
+.dtc .variants{display:flex;flex-wrap:wrap;gap:8px}
+.dtc .variants button{border:1px solid var(--edge);background:var(--glass);border-radius:99px;padding:7px 15px;cursor:pointer;font-weight:600;font-size:.9rem;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.dtc .variants button[aria-pressed="true"]{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(123,92,255,.4)}
+.dtc .acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.dtc .btn{border:1px solid var(--edge);background:var(--glass);border-radius:99px;padding:9px 16px;cursor:pointer;font-weight:700;font-size:.92rem;transition:transform .2s cubic-bezier(.3,1.4,.5,1)}
+.dtc .btn:active{transform:scale(.95)}
+.dtc .btn.primary{background:var(--red);border-color:transparent;color:#fff;box-shadow:0 6px 16px rgba(212,31,58,.35)}
+.dtc .btn.danger{color:var(--dred);border-color:var(--dred)}
+.dtc .btn:disabled{opacity:.5;cursor:default}
+
+.dtc .empty{margin:0;padding:18px;text-align:left;background:var(--glass);border:1px dashed var(--line);border-radius:var(--r);display:flex;flex-direction:column;gap:10px;align-items:flex-start;-webkit-backdrop-filter:blur(26px);backdrop-filter:blur(26px)}
+.dtc .empty p{margin:0}
+
+/* каталог */
+.dtc .cat-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 16px;margin-bottom:6px}
+.dtc .cat-head h2{font-weight:700;font-size:1.15rem;margin:0;text-transform:uppercase;letter-spacing:.06em}
+.dtc .cat-head span{color:var(--mute);font-size:.9rem}
+.dtc .group{display:flex;flex-direction:column;gap:8px}
+.dtc .group h3{font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:12px 0 0}
+.dtc .rows{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.dtc .row{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;text-align:left;background:var(--glass);border:1px solid var(--edge);border-radius:16px;padding:11px 13px;cursor:pointer;min-width:0;color:var(--ink);font:inherit;box-shadow:var(--shadow);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);transition:transform .2s cubic-bezier(.3,1.4,.5,1)}
+.dtc .row:active{transform:scale(.97)}
+.dtc .row b{font-family:var(--mono);font-weight:700;font-size:1rem;grid-row:span 2;align-self:start;color:var(--acc)}
+.dtc .row span{font-size:.9rem;line-height:1.3;min-width:0;overflow-wrap:anywhere}
+.dtc .row em{font-style:normal;font-size:.76rem;color:var(--mute)}
+@media (min-width:900px){.dtc .row:hover{transform:translateY(-2px)}}
+
+/* форма */
+.dtc .form{background:var(--glass);border:1px solid var(--edge);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--shadow);-webkit-backdrop-filter:blur(26px) saturate(1.8);backdrop-filter:blur(26px) saturate(1.8)}
+.dtc .form h2{font-weight:700;font-size:1.2rem;margin:0}
+.dtc .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.dtc .grid2{grid-template-columns:1fr}}
+.dtc .fld{display:flex;flex-direction:column;gap:4px;min-width:0}
+.dtc .fld label{font-weight:600;font-size:.9rem}
+.dtc .fld small{color:var(--mute);font-size:.82rem}
+.dtc .fld input,.dtc .fld textarea{width:100%;max-width:none;background:var(--bg);background-image:none;border:1px solid var(--line);border-radius:12px;padding:10px 12px;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;color:var(--ink);font:inherit;transform:none}
+.dtc .fld input:focus,.dtc .fld textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 30%,transparent);transform:none}
+.dtc .fld textarea{min-height:92px;resize:vertical;line-height:1.4}
+.dtc #f-code{font-family:var(--mono);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.dtc .err{color:var(--dred);font-weight:600;font-size:.9rem;margin:0}
+.dtc .where{font-size:.86rem;color:var(--mute);margin:0}
+
+/* подвал */
+.dtc .foot{margin:6px 0 0;text-align:left;align-items:stretch;color:var(--mute);font-size:.82rem;border-top:1px solid var(--line);padding-top:14px;display:flex;flex-direction:column;gap:6px}
+.dtc .foot[hidden]{display:none}
+.dtc .foot p{margin:0;max-width:75ch}
+[hidden]{display:none!important}

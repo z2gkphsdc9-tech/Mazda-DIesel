@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mazda Diesel · ошибки</title>
+<link rel="stylesheet" href="ios-style.css">
+<link rel="stylesheet" href="errors.css">
+</head>
+<body>
+<main class="dtc">
+<a class="back" href="./">← Назад</a>
+<h1 class="brand page"><span class="t">Ошибки</span></h1>
+<p class="sub">SKYACTIV-D 1.5 и 1.8. Введите код со сканера и получите причины и порядок ремонта.</p>
+<section class="scan" aria-label="Поиск по коду">
+    <label for="q">Код ошибки</label>
+    <div class="scan-row">
+      <input id="q" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="P2106" maxlength="40" aria-describedby="q-hint">
+      <button id="clear" type="button" hidden>Сбросить</button>
+    </div>
+    <small id="q-hint">Можно без «:00» и русскими буквами. Ищет и по словам: «турбина», «сажевый», «масло».</small>
+  </section>
+
+  <div id="result" aria-live="polite"></div>
+
+  <section id="formbox" class="form" hidden>
+    <h2 id="form-title">Новый код</h2>
+    <form id="form" novalidate>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="grid2">
+          <div class="fld"><label for="f-code">Код</label><input id="f-code" type="text" maxlength="10" placeholder="P0420" autocomplete="off" spellcheck="false"><small>Буква P, B, C или U и четыре знака. Подкод по желанию: P0420:00.</small></div>
+          <div class="fld"><label for="f-eng">Двигатель или блок</label><input id="f-eng" type="text" maxlength="40" list="eng-list" placeholder="SKYACTIV-D 1.8"><datalist id="eng-list"><option value="SKYACTIV-D 1.5"><option value="SKYACTIV-D 1.8"><option value="SKYACTIV-D 2.2"><option value="АКПП"><option value="DSC"><option value="BCM"></datalist></div>
+        </div>
+        <div class="fld"><label for="f-title">Что означает код</label><input id="f-title" type="text" maxlength="160" placeholder="Например: низкая эффективность нейтрализатора"></div>
+        <div class="fld"><label for="f-fix">Решение коротко</label><textarea id="f-fix" maxlength="600" placeholder="Что помогло или с чего начать"></textarea></div>
+        <div class="grid2">
+          <div class="fld"><label for="f-causes">Возможные причины</label><textarea id="f-causes" maxlength="3000" placeholder="Каждая причина с новой строки"></textarea></div>
+          <div class="fld"><label for="f-steps">Порядок действий</label><textarea id="f-steps" maxlength="5000" placeholder="Каждый шаг с новой строки"></textarea></div>
+        </div>
+        <div class="fld"><label for="f-note">Заметка</label><input id="f-note" type="text" maxlength="400" placeholder="Модель, год, пробег, номер детали"></div>
+        <p class="err" id="f-err" hidden></p>
+        <p class="where" id="f-where"></p>
+        <div class="acts">
+          <button class="btn primary" type="submit" id="f-save">Сохранить</button>
+          <button class="btn" type="button" id="f-cancel">Отмена</button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <section id="catalog" aria-label="Все коды">
+    <div class="cat-head">
+      <h2>Все коды</h2>
+      <span id="count"></span>
+      <button class="btn" type="button" id="add">Добавить свой код</button>
+    </div>
+    <div id="groups"></div>
+  </section>
+
+  <footer class="foot">
+    <p>Неофициальный справочник сообщества. Не является продуктом Mazda Motor Corporation и не связан с ней.</p>
+    <p>Карточки составлены как краткий пересказ сервисных инструкций из группы. Перед ремонтом сверяйте порядок действий и номера выводов с исходным PDF: имя файла указано внизу каждой карточки.</p>
+  </footer>
+</main>
+<script src="errors.js"></script>
+</body>
+</html>
