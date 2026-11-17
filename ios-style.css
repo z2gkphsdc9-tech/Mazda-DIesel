@@ -168,10 +168,11 @@ button.copy:hover{filter:brightness(1.1);transform:translateY(-1px)}
 }
 
 /* ===== ГЛАВНАЯ: заголовок + две большие кнопки ===== */
-html::after{inset:-6%;transform:translate(var(--pull-x,0px),var(--pull-y,0px)) scale(var(--pull-s,1));transition:transform .55s cubic-bezier(.2,.9,.3,1)}
 .home{min-height:calc(100vh - 60px);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding-top:6vh}
-.brand{font-family:"Orbitron","SF Pro Display",system-ui,sans-serif;font-weight:900;font-size:clamp(2.4rem,9vw,5rem);line-height:1.05;letter-spacing:.04em;text-transform:uppercase;margin:0;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 22px rgba(123,92,255,.35))}
-.brand small{display:block;font-size:.34em;font-weight:700;letter-spacing:.5em;margin-top:.5em;-webkit-text-fill-color:var(--mute);color:var(--mute)}
+.brand{font-family:"Russo One","Orbitron","SF Pro Display",system-ui,sans-serif;font-weight:400;font-size:clamp(2.4rem,9vw,5rem);line-height:1.1;letter-spacing:.05em;text-transform:uppercase;margin:0;color:var(--ink);text-align:center;background:none;-webkit-text-fill-color:initial}
+.brand .t{display:inline-block;padding-bottom:.06em;background:linear-gradient(to top,#c8102e 0%,#ff4d5e 28%,var(--ink) 58%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.brand small{display:block;font-size:.3em;font-weight:400;letter-spacing:.5em;margin-top:.6em;color:var(--mute);-webkit-text-fill-color:var(--mute)}
+.brand.page{font-size:clamp(2rem,8vw,3.4rem);margin:6px 0 20px}
 .menu{display:flex;flex-direction:column;gap:18px;width:100%;max-width:460px;margin-top:9vh}
 .big{display:flex;align-items:center;justify-content:center;gap:12px;padding:30px 20px;border-radius:28px;font-weight:800;font-size:1.5rem;letter-spacing:-.01em;text-decoration:none;color:var(--ink);background:var(--glass);border:1px solid var(--edge);-webkit-backdrop-filter:blur(26px) saturate(1.8);backdrop-filter:blur(26px) saturate(1.8);box-shadow:var(--shadow),0 18px 0 -8px rgba(60,50,140,.12);transform:translateY(0);transition:transform .35s cubic-bezier(.3,1.4,.5,1),box-shadow .35s,filter .35s;cursor:pointer;user-select:none}
 .big span{font-size:1.7rem}

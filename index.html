@@ -6,12 +6,12 @@
 <title>Mazda Diesel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="ios-style.css">
 </head>
 <body>
 <main class="home">
-  <h1 class="brand">Mazda Diesel<small>справочник</small></h1>
+  <h1 class="brand"><span class="t">Mazda Diesel</span><small>справочник</small></h1>
   <nav class="menu">
     <a class="big" href="parts.html"><span>🔧</span>Запчасти</a>
     <a class="big" href="guides.html"><span>📖</span>Инструкции</a>
@@ -19,30 +19,17 @@
 </main>
 <script>
 (function(){
-  var root=document.documentElement;
-  function pull(btn){
-    var r=btn.getBoundingClientRect();
-    var dx=(r.left+r.width/2)-innerWidth/2, dy=(r.top+r.height/2)-innerHeight/2;
-    var k=Math.min(12/Math.max(Math.abs(dx),Math.abs(dy),1),1); /* максимум ~12px */
-    root.style.setProperty('--pull-x',(dx*k)+'px');
-    root.style.setProperty('--pull-y',(dy*k)+'px');
-    root.style.setProperty('--pull-s','1.05');
-  }
-  function release(){
-    document.querySelectorAll('.big.down').forEach(function(b){b.classList.remove('down')});
-    root.style.setProperty('--pull-x','0px');root.style.setProperty('--pull-y','0px');root.style.setProperty('--pull-s','1');
-  }
   document.querySelectorAll('.big').forEach(function(b){
-    b.addEventListener('pointerdown',function(){b.classList.add('down');pull(b)});
-    b.addEventListener('pointerup',function(){});
-    b.addEventListener('pointercancel',release);
-    b.addEventListener('pointerleave',release);
+    function up(){b.classList.remove('down')}
+    b.addEventListener('pointerdown',function(){b.classList.add('down')});
+    b.addEventListener('pointercancel',up);
+    b.addEventListener('pointerleave',up);
     b.addEventListener('click',function(e){
-      e.preventDefault();b.classList.add('down');pull(b);
-      setTimeout(function(){location.href=b.getAttribute('href')},320);
+      e.preventDefault();b.classList.add('down');
+      setTimeout(function(){location.href=b.getAttribute('href')},280);
     });
   });
-  addEventListener('pageshow',release);
+  addEventListener('pageshow',function(){document.querySelectorAll('.big.down').forEach(function(b){b.classList.remove('down')})});
 })();
 </script>
 </body>
