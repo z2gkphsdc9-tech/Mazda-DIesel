@@ -162,17 +162,13 @@ button.copy:hover{filter:brightness(1.1);transform:translateY(-1px)}
 #list{grid-template-columns:repeat(auto-fill,minmax(400px,1fr))}
 }
 
-/* ===== Шрифт заголовков: Graphik (файлы кладутся в папку fonts/) ===== */
-@font-face{font-family:"Graphik";font-weight:500;font-style:normal;font-display:swap;src:local("Graphik Medium"),local("Graphik-Medium"),url(fonts/Graphik-Medium.woff2) format("woff2")}
-@font-face{font-family:"Graphik";font-weight:600;font-style:normal;font-display:swap;src:local("Graphik Semibold"),local("Graphik-Semibold"),url(fonts/Graphik-Semibold.woff2) format("woff2")}
-@font-face{font-family:"Graphik";font-weight:700;font-style:normal;font-display:swap;src:local("Graphik Bold"),local("Graphik-Bold"),url(fonts/Graphik-Bold.woff2) format("woff2")}
-@font-face{font-family:"Graphik";font-weight:900;font-style:normal;font-display:swap;src:local("Graphik Black"),local("Graphik-Black"),url(fonts/Graphik-Black.woff2) format("woff2")}
-:root{--f-head:"Graphik","Helvetica Neue",Helvetica,Arial,system-ui,sans-serif}
+/* ===== Шрифт заголовков: Merriweather (подключается через Google Fonts в <head>) ===== */
+:root{--f-head:"Merriweather",Georgia,"Times New Roman",serif}
 h1,h2,h3,h4,.brand{font-family:var(--f-head)}
 
 /* ===== ГЛАВНАЯ: заголовок + кнопки ===== */
 .home{min-height:calc(100vh - 60px);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding-top:6vh}
-.brand{font-weight:700;font-size:clamp(2.4rem,9vw,5rem);line-height:1.1;letter-spacing:.04em;text-transform:uppercase;margin:0;color:var(--ink);text-align:center;background:none;-webkit-text-fill-color:initial}
+.brand{font-weight:900;font-size:clamp(2.2rem,8.5vw,4.6rem);line-height:1.15;letter-spacing:.02em;text-transform:uppercase;margin:0;color:var(--ink);text-align:center;background:none;-webkit-text-fill-color:initial}
 .brand .t{display:inline-block;padding-bottom:.06em;background:linear-gradient(to top,#c8102e 0%,#ff4d5e 28%,var(--ink) 58%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
 .brand small{display:block;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;font-size:.3em;font-weight:500;letter-spacing:.5em;margin-top:.6em;color:var(--mute);-webkit-text-fill-color:var(--mute)}
 .brand.page{font-size:clamp(2rem,8vw,3.4rem);margin:6px 0 20px}
