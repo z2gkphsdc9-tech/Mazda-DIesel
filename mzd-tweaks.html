@@ -37,8 +37,14 @@ h1,h2,h3,h4{font-family:var(--f-head)}
 
 /* навигация */
 nav{position:sticky;top:max(8px,env(safe-area-inset-top));z-index:50;margin:16px 0 0}
-nav .container{display:flex;gap:6px;overflow-x:auto;padding:6px;background:var(--glass);border:1px solid var(--edge);border-radius:99px;box-shadow:var(--shadow);-webkit-backdrop-filter:blur(26px) saturate(1.8);backdrop-filter:blur(26px) saturate(1.8);scrollbar-width:none}
-nav .container::-webkit-scrollbar{display:none}
+nav .container{display:flex;align-items:center;gap:6px;overflow:hidden;padding:6px;background:var(--glass);border:1px solid var(--edge);border-radius:99px;box-shadow:var(--shadow);-webkit-backdrop-filter:blur(26px) saturate(1.8);backdrop-filter:blur(26px) saturate(1.8);scrollbar-width:none}
+.navlinks{display:flex;gap:6px;flex:1;min-width:0;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none}
+.navlinks::-webkit-scrollbar{display:none}
+.navarrow{display:none;flex:none;width:36px;height:36px;border:0;border-radius:50%;background:var(--grad);color:#fff;font:700 1.5rem/1 var(--f-head);cursor:pointer;padding:0 0 3px;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(123,92,255,.4);transition:transform .2s cubic-bezier(.3,1.4,.5,1),opacity .2s}
+.navarrow:active{transform:scale(.9)}
+.navarrow:disabled{opacity:.3;cursor:default;box-shadow:none}
+.navarrow[hidden]{display:none!important}
+@media (min-width:900px){.navarrow{display:flex}}
 nav a{flex:none;color:var(--ink);text-decoration:none;font-size:.86rem;font-weight:600;padding:7px 14px;border-radius:99px;transition:background .2s,transform .2s cubic-bezier(.3,1.4,.5,1)}
 nav a:hover{background:var(--chip)}
 nav a:active{transform:scale(.94)}
@@ -106,7 +112,9 @@ pre code{background:none;padding:0}
 
   <nav>
     <div class="container">
-      <a href="#prepare">Подготовка</a>
+      <button class="navarrow" id="navPrev" type="button" aria-label="Прокрутить влево">‹</button>
+      <div class="navlinks" id="navLinks">
+        <a href="#prepare">Подготовка</a>
       <a href="#check-fw">Проверка FW</a>
       <a href="#aio">Установка AIO</a>
       <a href="#unlock70">Разблок. 70</a>
@@ -116,6 +124,8 @@ pre code{background:none;padding:0}
       <a href="#remove">Удаление</a>
       <a href="#reboot">Перезагрузка</a>
       <a href="#risks">Риски</a>
+      </div>
+      <button class="navarrow" id="navNext" type="button" aria-label="Прокрутить вправо">›</button>
     </div>
   </nav>
 
@@ -440,5 +450,25 @@ sh 74.sh</pre>
       
     </footer>
   </main>
+<script>
+(function(){
+  var box=document.getElementById('navLinks'),p=document.getElementById('navPrev'),n=document.getElementById('navNext');
+  if(!box||!p||!n)return;
+  function upd(){
+    var max=box.scrollWidth-box.clientWidth;
+    var need=max>2;
+    p.hidden=n.hidden=!need;
+    p.disabled=box.scrollLeft<=2;
+    n.disabled=box.scrollLeft>=max-2;
+  }
+  function go(d){box.scrollBy({left:d*Math.max(box.clientWidth*.7,150),behavior:'smooth'})}
+  p.addEventListener('click',function(){go(-1)});
+  n.addEventListener('click',function(){go(1)});
+  box.addEventListener('scroll',upd,{passive:true});
+  addEventListener('resize',upd);
+  upd();
+  setTimeout(upd,300);
+})();
+</script>
 </body>
 </html>
