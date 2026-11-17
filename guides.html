@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mazda Diesel · инструкции</title>
+<link rel="stylesheet" href="ios-style.css">
+</head>
+<body>
+<main>
+<a class="back" href="./">← Назад</a>
+<h1>Инструкции</h1>
+<div class="cars modes" id="modes" hidden role="group" aria-label="Раздел сайта"></div>
+<p class="sub" id="sub">Выберите авто, затем введите деталь или номер: «колодки», «фильтр», «KYB».</p>
+<div class="cars" id="cars" role="group" aria-label="Авто"></div>
+<div class="cars" id="tabs" role="group" aria-label="Раздел" hidden></div>
+<input id="q" type="search" placeholder="Что ищем?" autocomplete="off" aria-label="Поиск запчасти">
+<div class="sub2" id="carinfo"></div>
+<div class="chips" id="cats" role="group" aria-label="Категории"></div>
+<div class="count" id="count" aria-live="polite"></div>
+<div id="list"></div>
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true"><div class="sheet" id="sheet"></div></div>
+<p class="foot" id="foot">Неофициальный справочник. Нажмите «Копировать», чтобы скопировать номер. В «Каталог Sidem» (для Axela) есть кнопка «Схема». Перед покупкой сверяйте по VIN: рестайлинг и комплектация меняют деталь.</p>
+</main>
+
+<script>window.PAGE_MODE="guides";</script>
+<script src="app.js"></script>
+</body>
+</html>
